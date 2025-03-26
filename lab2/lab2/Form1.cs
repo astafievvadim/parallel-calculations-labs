@@ -324,7 +324,9 @@ namespace lab2
         {
             if (double.TryParse(aTextBox.Text, out a) &&
                 double.TryParse(bTextBox.Text, out b) &&
-                int.TryParse(nTextBox.Text, out N))
+                int.TryParse(nTextBox.Text, out N) &&
+                (a < b))
+
             {
                 N++;
                 dataGridView1.Rows.Clear();

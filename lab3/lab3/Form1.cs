@@ -37,6 +37,7 @@ namespace lab3
             bool bb = b[number];
             bool temp = aa && bb;
             results[number] = temp;
+
             mut.WaitOne();
 
             result = result || temp;
