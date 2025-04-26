@@ -53,6 +53,7 @@ namespace lab4
         private bool InterpolationSearchRec(Node node, int key, int min, int max)
         {
             if (node == null || min == max) return false;
+
             if (node.Key == key) return true;
 
             double range = max - min;
