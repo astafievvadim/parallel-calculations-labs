@@ -1,0 +1,11 @@
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\bin\Debug\lab6.exe.config
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\bin\Debug\lab6.exe
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\bin\Debug\lab6.pdb
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.csproj.AssemblyReference.cache
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.csproj.SuggestedBindingRedirects.cache
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.Form1.resources
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.Properties.Resources.resources
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.csproj.GenerateResource.cache
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.csproj.CoreCompileInputs.cache
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.exe
+C:\Users\gamel\Desktop\parallel-calculations-labs\lab6\lab6\obj\Debug\lab6.pdb
