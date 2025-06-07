@@ -1,20 +1,22 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace lab6
 {
     internal class GeneticAlg
-    {
+    {/*
         private List<Specimen> list;
         private List<Specimen> bestPerGen;
+        public List<int> averageThreadCountPerGen;
 
-        private const int populationSize = 15;
+        PSS riggedPSS = new PSS(100, 3, 5);
+
+        private const int populationSize = 100;
         private const int tournamentSize = 5;
-        private const int generationsCount = 50;
+        private const int generationsCount = 30;
         private const int numberOfMutation = 1;
 
         private const int minThread = 1;
@@ -24,7 +26,6 @@ namespace lab6
 
         public GeneticAlg()
         {
-            //maxThread = queue.Length();
             init();
             simulation();
         }
@@ -33,44 +34,63 @@ namespace lab6
         {
             List<int> r = new List<int>();
 
-            for(int i = 0; i < bestPerGen.Count; i++)
+            for (int i = 0; i < bestPerGen.Count; i++)
             {
-                r.Add(Utils.Bin2Dec(bestPerGen[i].getChromosome()));
+                r.Add(Utils.BinToDec(bestPerGen[i].getChromosome()));
             }
             return r;
         }
 
-        private long getFitness(Specimen specimen)
-        { 
-            // Specimen . chromosome . N
-            // SMO.test(N) -> time
-            // (Queue -> Threads -> result) = time;
-            // return 1/time;
+        private double getFitness(Specimen specimen)
+        {
+            int threadCount = Utils.BinToDec(specimen.getChromosome());
 
-            int threadCount = Utils.Bin2Dec(specimen.getChromosome());
+            double time = riggedPSS.run(100, minThread, minThread, threadCount).TotalSeconds;
+            double efficiency = (double)threadCount / Environment.ProcessorCount;
+            double fitness = (100.0 / time) / threadCount;
 
-            return threadCount;
+            return fitness;
         }
-        
+
         private void init()
         {
             list = new List<Specimen>();
             bestPerGen = new List<Specimen>();
+            averageThreadCountPerGen = new List<int>();
 
             for (int i = 0; i < populationSize; i++)
             {
-                int n = Utils.rangeRandom(minThread, maxThread);
-                string chr = Utils.Dec2Bin(n);
+                int n = Utils.RangeRandom(minThread, 5);
+                string chr = Utils.DecToBin(n);
                 list.Add(new Specimen(chr));
             }
+            bestPerGen.Add(FindBestIndInTour(list));
             
         }
 
-        private void simulation() { 
+        private int getAvFitness(List<Specimen> l)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < l.Count; i++)
+            {
+                sum += Utils.BinToDec(l[i].getChromosome());
+            }
+
+            sum = sum / l.Count;
+
+            return sum;
+        }
+
+        private void simulation() {       
+
+            averageThreadCountPerGen.Add(getAvFitness(list));
 
             for(int i = 0; i < generationsCount; i++)
             {
                 getNewPopulation();
+
+                averageThreadCountPerGen.Add(getAvFitness(list));
                 bestPerGen.Add(FindBestIndInTour(list)); 
             }
 
@@ -87,7 +107,7 @@ namespace lab6
             while(selected.Count < tournamentSize)
             {
 
-                int index = Utils.rangeRandom(0, populationSize-1);
+                int index = Utils.RangeRandom(0, populationSize-1);
 
                 if (banned.Contains(index))
                 {
@@ -141,16 +161,18 @@ namespace lab6
 
             char[] aChrom = parentA.getChromosome().ToCharArray();
             char[] bChrom = parentB.getChromosome().ToCharArray();
+
             //crossover point:
             //char[] childChrom = { aChrom[0], aChrom[1], aChrom[2], bChrom[3], bChrom[4], bChrom[5], bChrom[6] };
             //uniform crossover:
+
             char[] childChrom = { aChrom[0], bChrom[1], aChrom[2], bChrom[3], aChrom[4], bChrom[5], aChrom[6] };
 
             child = new Specimen(new string(childChrom));
             
             for(int i = 0; i < numberOfMutation; i++)
             {
-                child.mutation(Utils.rangeRandom(0, 6));
+                child.mutation(Utils.RangeRandom(0, 6));
             }
 
             return child;
@@ -177,7 +199,7 @@ namespace lab6
          * 2.3. Put that wretched mutated child into new generation
          * 3. Do step 2 until the you reach the number of generations
          * 4. Happy happy happy
-         */
+         
     }
 
     internal class Specimen
@@ -187,7 +209,7 @@ namespace lab6
 
         public Specimen(string chr)
         {
-            this.chromosome = Utils.strNormalizeDec2Bin(chr);
+            this.chromosome = Utils.GetNormalizedBinary(chr,0,100,7);
         }
 
         public string getChromosome()
@@ -208,18 +230,9 @@ namespace lab6
                 temp[i] = '0';
             }
 
-            this.chromosome = Utils.strNormalizeDec2Bin(new string(temp));
+            this.chromosome = Utils.GetNormalizedBinary(new string(temp), 0, 100, 7);
 
         }
-
-        // something like a chromosome to express the number of threads
-
-        // hardcoded maximum number of threads, each time a new specimen is born, the number of threads should be compared against it and limited by it
-
-        // constructor from __chromosome__ (which is probably going to be a string), don't forget the previous check
-
-        // class chromosome is probably not needed 0
-
-
+        */
     }
 }
