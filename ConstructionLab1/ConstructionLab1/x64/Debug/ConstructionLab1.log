@@ -1,0 +1,4 @@
+﻿  ConstructionLab1.cpp
+C:\Users\gamel\Desktop\parallel-calculations-labs\ConstructionLab1\ConstructionLab1\ConstructionLab1.cpp(40,35): error C3861: 'to_string': identifier not found
+C:\Users\gamel\Desktop\parallel-calculations-labs\ConstructionLab1\ConstructionLab1\ConstructionLab1.cpp(41,35): error C3861: 'to_string': identifier not found
+C:\Users\gamel\Desktop\parallel-calculations-labs\ConstructionLab1\ConstructionLab1\ConstructionLab1.cpp(61,25): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
